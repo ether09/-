@@ -1,0 +1,40 @@
+package bug20221281;
+
+import java.util.Scanner;
+import java.util.Random;
+
+public class bug20221281_01 {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+
+        String[] choices = {"가위", "바위", "보"};
+
+        System.out.print("가위(1), 바위(2), 보(3) 중 하나를 선택하세요: ");
+        int playerChoice = scanner.nextInt();  // 1~3
+
+        if (playerChoice < 1 || playerChoice > 3) {
+            System.out.println("잘못된 입력입니다. 1~3 사이의 숫자를 입력하세요.");
+            scanner.close();
+            return;
+        }
+
+        int computerChoice = random.nextInt(3) + 1;
+
+        System.out.println("당신의 선택: " + choices[playerChoice - 1]);
+        System.out.println("컴퓨터의 선택: " + choices[computerChoice - 1]);
+
+        if (playerChoice == computerChoice) {
+            System.out.println("비겼습니다!");
+        } else if ((playerChoice == 1 && computerChoice == 3) ||
+                   (playerChoice == 2 && computerChoice == 1) ||
+                   (playerChoice == 3 && computerChoice == 2)) {
+            System.out.println("당신이 이겼습니다!");
+        } else {
+            System.out.println("당신이 졌습니다!");
+        }
+
+        scanner.close();
+    }
+}
